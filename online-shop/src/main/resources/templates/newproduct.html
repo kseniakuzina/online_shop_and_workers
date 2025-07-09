@@ -1,0 +1,31 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user_id-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Создание роли</title>
+</head>
+<body>
+<h3>Создание роли</h3>
+<form method="POST" th:action="@{/home/admin/newproduct}" id="registerForm" onsubmit="return validateForm();">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+    <label for="name">Название продукта</label>
+    <input type="text" name="name" id="name" required/><br/>
+
+    <label for="name">Количество на складе</label>
+    <input type="number" name="quantity" id="quantity" required/><br/>
+
+    <label for="name">Материал</label>
+    <input type="text" name="material" id="material" required/><br/>
+
+    <label for="name">Стоимость</label>
+    <input type="number" step = "any" name="cost" id="cost" required/><br/>
+
+    <input type="submit" value="Добавить новый продукт"/>
+</form>
+</body>
+</html>

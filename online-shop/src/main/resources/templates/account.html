@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Аккаунт</title>
+</head>
+<body>
+<h1>Данные аккаунта</h1>
+
+<form th:action="@{/home/account/update}" method="post">
+    <div>
+        <label><strong>Имя:</strong></label>
+        <input type="text" name="firstName" th:value="${currUser.firstName}" />
+    </div>
+
+    <div>
+        <label><strong>Фамилия:</strong></label>
+        <input type="text" name="lastName" th:value="${currUser.lastName}" />
+    </div>
+
+    <div>
+        <label><strong>Username:</strong></label>
+        <input type="text" name="username" th:value="${currUser.username}" />
+    </div>
+
+    <div>
+        <label><strong>Email:</strong></label>
+        <input type="email" name="email" th:value="${currUser.email}" />
+    </div>
+
+    <div>
+        <label><strong>Номер телефона:</strong></label>
+        <input type="tel" name="phone" th:value="${currUser.phone}" />
+    </div>
+
+    <button type="submit">Изменить</button>
+
+    <h2>Роли пользователя:</h2>
+    <ul>
+        <li th:each="role : ${currUser.roles}" th:text="${role.name}">Роль</li>
+    </ul>
+</form>
+
+</body>
+</html>

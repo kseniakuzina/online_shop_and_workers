@@ -1,0 +1,48 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user_id-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Заказы</title>
+</head>
+<body>
+<h1>Заказы пользователя <span th:text="${username}">User</span>!</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID Заказа</th>
+        <th>Количество товаров</th>
+        <th>Сумма</th>
+        <th>Пользователь</th>
+        <th>Статус</th>
+        <th>Адрес</th>
+        <th>Товары</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}">ID Заказа</td>
+        <td th:text="${order.quantity}">Количество</td>
+        <td th:text="${order.amount}">Сумма</td>
+        <td th:text="${order.user.username}">Пользователь</td>
+        <td th:text="${order.status}">Статус</td>
+        <td th:text="${order.address}">Адрес</td>
+        <td>
+            <ul>
+                <li th:each="cart : ${order.carts}">
+                    Продукт: <span th:text="${cart.product.name}">Продукт</span>,
+                    Количество: <span th:text="${cart.productQuantity}">Количество</span>,
+                    Сумма: <span th:text="${cart.amount}">Сумма</span>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<h1>Login</h1>
+<div th:if="${error}">
+    <p>Unable to login. Check your username and password.</p>
+</div>
+<p>New here? Click
+    <a th:href="@{/register}">here</a> to register.</p>
+<form method="POST" th:action="@{/login}" id="loginForm">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username" required/><br/>
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password" required/><br/>
+    <input type="submit" value="Login"/>
+</form>
+</body>
+</html>

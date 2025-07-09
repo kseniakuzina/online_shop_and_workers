@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user_id-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Успешная авторизация</title>
+</head>
+<body>
+<h1>Интернет-магазин</h1>
+<h1>Авторизация прошла успешно!</h1>
+<h1>Привет, <span th:text="${username}">User</span>!</h1>
+
+<div th:if="${#lists.contains(roles, 'ROLE_ADMIN')}">
+    <a href="home/admin" class="btn btn-primary">Перейти в панель администратора</a>
+</div>
+
+<form action="/home/account">
+    <input type="submit" value="мой аккаунт" />
+</form>
+<form action="/logout" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <button type="submit">Выйти</button>
+</form>
+<form action="/home/cart">
+    <input type="submit" value="моя корзина" />
+</form>
+<form action="/home/order">
+    <input type="submit" value="мои заказы" />
+</form>
+<h2>Список товаров</h2>
+<div th:if="${errorMessage != null}">
+    <p th:text="${errorMessage}"></p>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Материал</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}">Название товара</td>
+        <td th:text="${product.cost}">Цена товара</td>
+        <td th:text="${product.material}">Материал</td>
+        <td>
+            <form action="home/cart" method="post">
+                <input type="hidden" name="productId" th:value="${product.id}"/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <button type="submit">Добавить в корзину</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
